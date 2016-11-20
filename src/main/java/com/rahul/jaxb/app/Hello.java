@@ -1,8 +1,8 @@
 package com.rahul.jaxb.app;
 
-import com.rahul.jaxb.model.GreetingListType;
-import com.rahul.jaxb.model.GreetingType;
-import com.rahul.jaxb.model.ObjectFactory;
+import com.rahul.jaxb.model.hello.GreetingListType;
+import com.rahul.jaxb.model.hello.GreetingType;
+import com.rahul.jaxb.model.hello.ObjectFactory;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -14,12 +14,12 @@ public class Hello {
     private ObjectFactory of;
     private GreetingListType grList;
 
-    public Hello(){
+    public Hello() {
         of = new ObjectFactory();
         grList = of.createGreetingListType();
     }
 
-    public void make( String t, String l ){
+    public void make(String t, String l) {
         GreetingType g = of.createGreetingType();
         g.setText(t);
         g.setLanguage(l);
@@ -29,18 +29,18 @@ public class Hello {
     public void marshal() {
         try {
             JAXBElement<GreetingListType> gl = of.createGreetings(grList);
-            JAXBContext jc = JAXBContext.newInstance( GreetingListType.class );
+            JAXBContext jc = JAXBContext.newInstance(GreetingListType.class);
             Marshaller m = jc.createMarshaller();
-            m.marshal( gl, System.out );
-        } catch( JAXBException jbe ){
+            m.marshal(gl, System.out);
+        } catch (JAXBException jbe) {
             jbe.printStackTrace();
         }
     }
 
-    public static void main(String args[]){
+    public static void main(String args[]) {
         Hello hello = new Hello();
-        hello.make( "Bonjour, madame", "fr" );
-        hello.make( "Hey, you", "en" );
+        hello.make("Bonjour, madame", "fr");
+        hello.make("Hey, you", "en");
         hello.marshal();
     }
 }
