@@ -5,8 +5,7 @@
 
     <xsd:complexType name="GreetingListType">
         <xsd:sequence>
-            <xsd:element name="Greeting" type="GreetingType"
-                         maxOccurs="unbounded"/>
+            <xsd:element name="Greeting" type="GreetingType" maxOccurs="unbounded"/>
         </xsd:sequence>
     </xsd:complexType>
 
