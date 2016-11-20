@@ -1,8 +1,8 @@
 package com.rahul.jaxb.app;
 
-import com.rahul.jaxb.model.hello.GreetingListType;
-import com.rahul.jaxb.model.hello.GreetingType;
-import com.rahul.jaxb.model.hello.ObjectFactory;
+import com.rahul.jaxb.model.GreetingListType;
+import com.rahul.jaxb.model.GreetingType;
+import com.rahul.jaxb.model.ObjectFactory;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
