@@ -8,13 +8,16 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
-public class Hello {
+public class HelloMarshal {
 
     private ObjectFactory of;
     private GreetingListType grList;
 
-    public Hello() {
+    public HelloMarshal() {
         of = new ObjectFactory();
         grList = of.createGreetingListType();
     }
@@ -31,14 +34,18 @@ public class Hello {
             JAXBElement<GreetingListType> gl = of.createGreetings(grList);
             JAXBContext jc = JAXBContext.newInstance(GreetingListType.class);
             Marshaller m = jc.createMarshaller();
-            m.marshal(gl, System.out);
+            try {
+                m.marshal(gl, new FileOutputStream(new File("src/main/resources/hello.xml")));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         } catch (JAXBException jbe) {
             jbe.printStackTrace();
         }
     }
 
     public static void main(String args[]) {
-        Hello hello = new Hello();
+        HelloMarshal hello = new HelloMarshal();
         hello.make("Bonjour, madame", "fr");
         hello.make("Hey, you", "en");
         hello.marshal();
